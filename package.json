@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.mjs",
   "scripts": {
-    "render": "node src/index.mjs"
+    "render": "node src/index.mjs", 
+    "example": "node src/example.mjs"
   },
   "author": "",
   "license": "ISC",
