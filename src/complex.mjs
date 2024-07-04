@@ -37,8 +37,7 @@ export default class Complex {
    static pow(c1, c2) {
       let [rh1, th1] = [c1.len, c1.ang];
       let [re2, im2] = [c2.re, c2.im];
-      // return this.fromPolar(re2 * rh1 - im2 * th1, re2 * th1 + im2 * rh1);
-      return this.fromPolar(rh1 ** re2 * Math.exp(im2 * th1), re2 * th1 + im2 * Math.log(rh1));
+      return this.fromPolar(rh1 ** re2 * Math.exp(-im2 * th1), re2 * th1 + im2 * Math.log(rh1));
    }
    static exp(c) {
       return this.pow(this.E, c);
