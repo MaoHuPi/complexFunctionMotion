@@ -27,7 +27,7 @@ export default async function renderColorMappingVideo({
 	oriImagePath,
 	fps = 60,
 	callback = message => { console.log(message); },
-	callMakeVideo = true, 
+	callMakeVideo = true,
 	withPositionArgument = false
 }) {
 	let [startFrame, stopFrame] = frameRange;
@@ -49,7 +49,8 @@ export default async function renderColorMappingVideo({
 					data[(r * cvs.width + c) * 4 + 2]
 				);
 				let oriComplex = Complex.fromPolar(oriHsl[2] / (1 - oriHsl[2]), oriHsl[0] * PI2);
-				let reflection = withPositionArgument ? func(oriComplex, new Complex(c / cvs.width - 0.5, r / cvs.height - 0.5)) : func(oriComplex);
+				let reflection = withPositionArgument ? func(oriComplex, new Complex(c / cvs.width - 0.5, -(r / cvs.height - 0.5))) : func(oriComplex);
+				// [re, im] = [column, -row], because of the y axis of canvas coordinate system is at the opposite direction of Cartesian coordinate system.
 				[data[(r * cvs.width + c) * 4 + 0], data[(r * cvs.width + c) * 4 + 1], data[(r * cvs.width + c) * 4 + 2]] = hsl2rgb(
 					Math.atan2(reflection.im, reflection.re) / PI2,
 					100 / 100,

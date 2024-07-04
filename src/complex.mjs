@@ -1,7 +1,7 @@
 /*
 * complex.js
 * MaoHuPi (c) 2024
-* v 1.1.0
+* v 1.1.1
 */
 
 export default class Complex {
@@ -38,10 +38,16 @@ export default class Complex {
       let [rh1, th1] = [c1.len, c1.ang];
       let [re2, im2] = [c2.re, c2.im];
       // return this.fromPolar(re2 * rh1 - im2 * th1, re2 * th1 + im2 * rh1);
-      return this.fromPolar(rh1**re2 * Math.exp(im2 * th1), re2 * th1 + im2 * Math.log(rh1));
+      return this.fromPolar(rh1 ** re2 * Math.exp(im2 * th1), re2 * th1 + im2 * Math.log(rh1));
    }
    static exp(c) {
       return this.pow(this.E, c);
+   }
+   static ln(c) {
+      return new this(Math.log(c.len), c.ang);
+   }
+   static log(c) {
+      return this.div(this.ln(c), this.ln(new this(10, 0)));
    }
    static sin(c) {
       return this.div(this.sub(this.exp(this.mul(c, new this(0, 1))), this.exp(this.mul(c, new this(0, -1)))), new this(0, 2));
